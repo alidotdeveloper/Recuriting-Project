@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "../style/login.css";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 
 function Login() {
@@ -9,23 +10,27 @@ function Login() {
     email: '',
     password: ''
   })
-  const [err, setError] = useState({message:''});
+  const navigate = useNavigate();
+  const [err, setError] = useState('');
+  
 
 
-  const handleLogin = async (e) => {
-    
+  const handleLogin =  (e) => { 
     e.preventDefault();
 
     axios.post('http://localhost:8080/api/login', values)
      .then(res => {
-         if (res.data.status === "success") {
-           console.log("login successful")
-         } else{
-          console.log(res.data);
-           setError({message: res.data.err });
-       }
        
-     }).catch(res => {console.log(err) })
+       console.log(res.data.message);
+       if (res.data.status === "ok") {
+           
+         setError(res.data.message);         
+       } else if (res.data.status === 'no') {
+         console.log(res)
+        setError(res.data.message);
+      }
+       
+     }).catch(err => console.log(err) )
     
     };
   
@@ -39,14 +44,17 @@ function Login() {
       <form onSubmit={handleLogin} method='POST'>
         
         <h3>Login Here</h3>
-        <div className='danger-text'>{err.message}</div>
-        <label>Email</label>
-        <input type='text'  onChange={e=> setValues({...values, email:e.target.value})}  />
-        <label>Password</label>
-        <input type='password'  onChange={e=> setValues({...values, password:e.target.value})} />
-        <button>Login</button>
+  
+        <label >Email</label>
+        <input type='text' id="email"  onChange={e=> setValues({...values, email:e.target.value})}  />
+        <label >Password</label>
+        <input type='password' id='passowrd'  onChange={e=> setValues({...values, password:e.target.value})} />
+        <button class="login-btn">Login</button>
+        <div className='signup-text' onClick={(()=>{navigate("/signup")}) }>Signup Here</div>
+
+        <div className='danger-text'>{err}</div>
       </form>
-     
+      
     </div>
     
   )
