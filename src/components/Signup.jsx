@@ -53,7 +53,7 @@ const Signup = () => {
   
         
         <label >Email</label>
-        <input type='text' id="email"   onChange={e=> setValues({...values, email:e.target.value})}  />
+        <input type='email' id="email"   onChange={e=> setValues({...values, email:e.target.value})}  />
         <label >Password</label>
         <input type='password' id='passowrd'   onChange={e=> setValues({...values, password:e.target.value})} />
         <label >Username</label>
