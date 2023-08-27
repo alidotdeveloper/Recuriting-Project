@@ -99,10 +99,10 @@ font-weight: 600;
 border-radius: 5px;
 cursor: pointer;
 }
-.danger-text,.signup-text{
+.danger-text,.signup-text,.login-text{
   color:white;
   text-align: center;
-   padding:15px; 
+   padding:10px; 
 }
 h1,h2,h3,h4{
   color: white;

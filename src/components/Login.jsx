@@ -50,7 +50,7 @@ function Login() {
         <label >Password</label>
         <input type='password' id='passowrd'  onChange={e=> setValues({...values, password:e.target.value})} />
         <button class="login-btn">Login</button>
-        <div className='signup-text' onClick={(()=>{navigate("/signup")}) }>Signup Here</div>
+        <div className='signup-text' onClick={(()=>{navigate("/signup")}) }>Signup?</div>
 
         <div className='danger-text'>{err}</div>
       </form>
