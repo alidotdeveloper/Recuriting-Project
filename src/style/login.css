@@ -109,4 +109,8 @@ h1,h2,h3,h4{
   color: white;
 }
 .signup-form{
-  height: 600px;}
+  height: 600px;
+}
+.forget-form{
+height: 350px;
+  }

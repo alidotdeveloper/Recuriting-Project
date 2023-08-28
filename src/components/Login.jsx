@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 
 
+
 function Login() {
 
   const [values, setValues] = useState({
@@ -50,6 +51,7 @@ function Login() {
         <label >Password</label>
         <input type='password' id='passowrd'  onChange={e=> setValues({...values, password:e.target.value})} />
         <button class="login-btn">Login</button>
+        <div className='danger-text'><a href="/forget-password" >Forget Password</a></div>
         <div className='signup-text' onClick={(()=>{navigate("/signup")}) }>Signup?</div>
 
         <div className='danger-text'>{err}</div>
