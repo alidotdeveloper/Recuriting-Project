@@ -2,7 +2,9 @@ import axios from 'axios';
 import React, { useState } from 'react';
 
 
+
 function Forgetpassword() {
+    const [err, setError] = useState('');
     const [values, setValues] = useState({
         email: '',
       })
@@ -12,16 +14,18 @@ function Forgetpassword() {
 
         axios.post('http://localhost:8080/api/forgetpassword', values)
             .then(res => {
-                
-                if (res.data.status === "ok") {
-                    console.log(res.data.message)
-                return res.json(200)
-                }
-                else {
-                    console.log("email not send")
-                }
-                
-            }).catch(err=>console.log(err))
+                console.log(res)
+               
+                    if (res.statusText === "OK") {
+                        setError(res.data.message)
+                    }
+                    if (res.statusText === "NO") {
+                  
+                        setError(res.data.message)
+                    }
+                   
+                })
+    .catch(err=>console.log("you got error in catch : " + err))
     
 
     }
@@ -36,7 +40,7 @@ function Forgetpassword() {
             <label >Email</label>
             <input type='text' id="email" onChange={e=> setValues({...values, email:e.target.value})}/>
             <button class="login-btn">Send</button>
-            <div className='danger-text'></div>
+            <div className='danger-text'>{err}</div>
         </form>
     
     </div>
