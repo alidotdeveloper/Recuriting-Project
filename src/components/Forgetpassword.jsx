@@ -12,7 +12,7 @@ function Forgetpassword() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        axios.post('http://localhost:8080/api/forgetpassword', values)
+        axios.post('http://localhost:8080/api/forgetpassword/', values)
             .then(res => {
                 console.log(res)
                

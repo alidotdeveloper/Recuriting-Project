@@ -1,21 +1,24 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-
+import React, { useState } from 'react';
+//import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 function NewPassword() {
     const [err, setError] = useState('');
-    const [values, setValues] = useState({
-        newpassword: '',
-        confirmpassword:''
-      })
+    const [values, setValues] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        let { userId, token } = useParams();
+     
+        //let { userId, token } = useParams();
         axios.post('http://localhost:8080/api/forgetpassword/:userId/:token', values)
             .then(res => {
+
+                
+                
+
+
                 console.log(res)
-               
+            
                     if (res.statusText === "OK") {
                         setError(res.data.message)
                     }
@@ -35,7 +38,7 @@ function NewPassword() {
             <div className="shape"></div>
             <div className="shape"></div>
         </div>
-            <form onSubmit={handleSubmit } method='POST' className='forget-form'>
+            <form onSubmit={handleSubmit } method='POST' >
             <h3>Forget password</h3>
             
             <label >New Password</label>
