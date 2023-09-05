@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
-//import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
+
 
 function NewPassword() {
     const [err, setError] = useState('');
-    const [values, setValues] = useState('')
+    const [values, setValues] = useState({
+        newPassword: '',
+        confirmPassword: '',
+    })
+    let { userId, token } = useParams();
 
     const handleSubmit = (e) => {
         e.preventDefault();
+       
      
-        //let { userId, token } = useParams();
-        axios.post('http://localhost:8080/api/forgetpassword/:userId/:token', values)
+       
+        const url = `http://localhost:8080/api/forgetpassword/${userId}/${token}`
+        
+        axios.post(url, values)
             .then(res => {
-
-                
-                
-
-
                 console.log(res)
             
                     if (res.statusText === "OK") {
