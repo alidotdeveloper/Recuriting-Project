@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+//import axios from 'axios';
 
 
 function NewPassword() {
@@ -10,29 +10,15 @@ function NewPassword() {
         confirmPassword: '',
     })
     let { userId, token } = useParams();
-
+ 
     const handleSubmit = (e) => {
         e.preventDefault();
        
-     
-       
         const url = `http://localhost:8080/api/forgetpassword/${userId}/${token}`
+        console.log("userId:", userId);
+        console.log("token:", token);
+   
         
-        axios.post(url, values)
-            .then(res => {
-                console.log(res)
-            
-                    if (res.statusText === "OK") {
-                        setError(res.data.message)
-                    }
-                    if (res.statusText === "NO") {
-                  
-                        setError(res.data.message)
-                    }
-                   
-                })
-    .catch(err=>console.log("you got error in catch : " + err))
-    
 
     }
     return(

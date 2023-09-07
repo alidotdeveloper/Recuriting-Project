@@ -49,3 +49,8 @@ function Forgetpassword() {
 }
 
 export default Forgetpassword
+
+
+// need to check the stored token
+// check the db token also with that
+// make sure both token should be same
