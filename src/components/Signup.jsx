@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
   const navigate = useNavigate();
-  const [err,setError] = useState()
+  const [err,setError] = useState('')
   const [values, setValues] = useState({
     email: '',
     password: '',
