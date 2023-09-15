@@ -57,7 +57,10 @@ const Signup = () => {
         <label >Password</label>
         <input type='password' id='passowrd'   onChange={e=> setValues({...values, password:e.target.value})} />
         <label >Username</label>
-        <input type='text' id="username" onChange={e=> setValues({...values, username:e.target.value})}  />
+          <input type='text' id="username" onChange={e => setValues({ ...values, username: e.target.value })} />
+          <select>
+            <option>Admin</option>
+          </select>
           <button>Signup</button>
           <div className='login-text' onClick={(()=>{navigate("/")}) }>Already have account?</div>
           <div className='danger-text'>{ err}</div>

@@ -21,15 +21,14 @@ function Login() {
 
     axios.post('http://localhost:8080/api/login', values)
      .then(res => {
-       
-       console.log(res.data.message);
+    
        if (res.data.status === "ok") {
-           
+           console.log(res)
          setError(res.data.message);         
-       } else if (res.data.status === 'no') {
+       }if (res.data.error === 'password not match') {
          console.log(res)
-        setError(res.data.message);
-      }
+        setError(res.data.error);
+       }
        
      }).catch(err => console.log(err) )
     
