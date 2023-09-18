@@ -1,23 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "../style/dashboard.css";
+import axios from "axios";
 
-function App() {
-  const [isNavOpen, setIsNavOpen] = useState(false);
+function App () {
 
-  const toggleNavbar = () => {
-    setIsNavOpen(!isNavOpen);
-  };
+  const [Users, setUser] = useState([])
+  useEffect(() => {
+    axios.get('http://localhost:8080/api/showuser')
+      .then((res) => {
+        setUser(res)
+        
+      })
+      .catch((err) =>{
+      setUser("you got error in catch:" + err)
+    }, [])
 
+
+
+  })
   return (
-    <div className={`body-pd ${isNavOpen ? 'show' : ''}`}>
-      <header className="header">
-        <div className="header_toggle" onClick={toggleNavbar}>
-          <i className={`bx ${isNavOpen ? 'bx-x' : 'bx-menu'}`} id="header-toggle"></i>
-        </div>
-        <div className="header_img">
-          <img src="https://i.imgur.com/hczKIze.jpg" alt="" />
-        </div>
-      </header>
+    <div>
+      
       <div className="l-navbar" id="nav-bar">
         <nav className="nav">
           <div>
@@ -27,17 +30,17 @@ function App() {
             </a>
             <div className="nav_list">
               <a href="/" className="nav_link active">
-                <i className="bx bx-grid-alt nav_icon"></i>
+                <i className="bx bxs-group nav_icon"></i>
                 <span className="nav_name">Dashboard</span>
               </a>
-              {/* Add more navigation links */}
+              
             </div>
             <div className="nav_list">
               <a href="/" className="nav_link">
-                <i className="bx bx-user nav_icon"></i>
-                <span className="nav_name">User</span>
+                <i className="bx bxs-user-plus nav_icon"></i>
+                <span className="nav_name">Add User</span>
               </a>
-              {/* Add more navigation links */}
+             
             </div>
           </div>
           <a href="/" className="nav_link">
@@ -47,7 +50,48 @@ function App() {
         </nav>
       </div>
       <div className="height-100 bg-black">
-        <h4>Main Components</h4>
+        <h4>User lists</h4>
+        <table class="table-auto">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Action</th>
+      
+      
+    </tr>
+  </thead>
+  <tbody>
+  {Users.length > 0 ? (
+  Users.map((user) => (
+    <tr key={user.id}>
+      <td>{user.id}</td>
+      <td>{user.name}</td>
+      <td>{user.email}</td>
+      <td>{user.role}</td>
+      <td>
+        <a href="/" className='global-btn'>edit</a>
+        <a href="/" className='global-btn'>delete</a>
+      </td>
+    </tr>
+  ))
+) : (
+  <tr>
+    <td colSpan="5">No users available</td>
+  </tr>
+)}
+
+
+
+
+
+
+
+</tbody>
+</table>
+
       </div>
     </div>
   );
