@@ -5,6 +5,8 @@ import Forgetpassword from "./components/Forgetpassword";
 import Newpassword from "./components/New-password";
 import Test from "./components/test";
 import Dashboard from "./components/dashboard";
+import EditUser from "./components/Edit-user";
+
 function App() {
   return (
     <>
@@ -19,6 +21,7 @@ function App() {
           element={<Newpassword />}
         />
         <Route exact path="/dashboard" element={<Dashboard />} />
+        <Route exact path="/dashboard/edit-user" element={<EditUser />} />
       </Routes>
     </>
   );

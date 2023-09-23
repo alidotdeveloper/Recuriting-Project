@@ -2,25 +2,31 @@ import React, { useEffect, useState } from 'react';
 import "../style/dashboard.css";
 import axios from "axios";
 
-function App () {
+
+
+function App() {
 
   const [Users, setUser] = useState([])
+  const [err, seterr] = useState(null)
+
+
   useEffect(() => {
     axios.get('http://localhost:8080/api/showuser')
       .then((res) => {
-        setUser(res)
-        
+        if (Array.isArray(res.data)) {
+          setUser(res.data)
+        } else {
+          seterr("Response data is not in array")
+        }
       })
-      .catch((err) =>{
-      setUser("you got error in catch:" + err)
-    }, [])
-
-
+      .catch((err) => {
+        seterr("Got Error In catch: " + err.message)
+      }, [])
 
   })
   return (
     <div>
-      
+
       <div className="l-navbar" id="nav-bar">
         <nav className="nav">
           <div>
@@ -33,14 +39,14 @@ function App () {
                 <i className="bx bxs-group nav_icon"></i>
                 <span className="nav_name">Dashboard</span>
               </a>
-              
+
             </div>
             <div className="nav_list">
               <a href="/" className="nav_link">
                 <i className="bx bxs-user-plus nav_icon"></i>
                 <span className="nav_name">Add User</span>
               </a>
-             
+
             </div>
           </div>
           <a href="/" className="nav_link">
@@ -52,45 +58,43 @@ function App () {
       <div className="height-100 bg-black">
         <h4>User lists</h4>
         <table class="table-auto">
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Role</th>
-      <th>Action</th>
-      
-      
-    </tr>
-  </thead>
-  <tbody>
-  {Users.length > 0 ? (
-  Users.map((user) => (
-    <tr key={user.id}>
-      <td>{user.id}</td>
-      <td>{user.name}</td>
-      <td>{user.email}</td>
-      <td>{user.role}</td>
-      <td>
-        <a href="/" className='global-btn'>edit</a>
-        <a href="/" className='global-btn'>delete</a>
-      </td>
-    </tr>
-  ))
-) : (
-  <tr>
-    <td colSpan="5">No users available</td>
-  </tr>
-)}
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Action</th>
 
 
+            </tr>
+          </thead>
+          <tbody>
+            {err ? (
+              <tr>
+                <td colSpan="5">{err}</td>
+              </tr>
+            ) : Users.length > 0 ? (
+              Users.map((user) => (
+                <tr key={user.id}>
+                  <td>{user.id}</td>
+                  <td>{user.username}</td>
+                  <td>{user.email}</td>
+                  <td>{user.role}</td>
+                  <td>
+                    <a href='/dashboard/Edit-user'  className='global-btn'>edit</a>
+                    <a href="/" className='global-btn'>delete</a>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5">No users available</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
 
-
-
-
-
-</tbody>
-</table>
 
       </div>
     </div>
