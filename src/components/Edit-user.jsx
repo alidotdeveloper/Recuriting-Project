@@ -57,10 +57,10 @@ function EditUser() {
         <label >Password</label>
         <input type='password' id='password' value={values.password} onChange={e => setValues({ ...values, password: e.target.value })} />
         <label> Select Role </label>
-        <select>
-        <option value="Admin"  onChange={e=> setValues({...values, admin:e.target.value})}>Admin</option>
-        <option value="Manager" onChange={e=> setValues({...values, manager:e.target.value})}>Manager</option>
-        <option value="Agent" onChange={e=> setValues({...values, agent:e.target.value})}>Agent</option>
+        <select value={values.role} onChange={e=> setValues({...values, role:e.target.value})}>
+        <option value="Admin" >Admin</option>
+        <option value="Manager">Manager</option>
+        <option value="Agent">Agent</option>
         </select>
         
         <button class="login-btn">Update</button>
