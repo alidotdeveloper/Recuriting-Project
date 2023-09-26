@@ -82,7 +82,7 @@ function App() {
                   <td>{user.email}</td>
                   <td>{user.role}</td>
                   <td>
-                    <a href='/dashboard/Edit-user'  className='global-btn'>edit</a>
+                    <a href={`/dashboard/Edit-user/${user.id}/${user.username}/${user.email}/${user.password}/${user.role}`}  className='global-btn'>edit</a>
                     <a href="/" className='global-btn'>delete</a>
                   </td>
                 </tr>

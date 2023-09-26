@@ -21,7 +21,11 @@ function App() {
           element={<Newpassword />}
         />
         <Route exact path="/dashboard" element={<Dashboard />} />
-        <Route exact path="/dashboard/edit-user" element={<EditUser />} />
+        <Route
+          exact
+          path="/dashboard/edit-user/:userId/:username/:email/:password/:role"
+          element={<EditUser />}
+        />
       </Routes>
     </>
   );
