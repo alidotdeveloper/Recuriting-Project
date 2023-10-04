@@ -24,7 +24,8 @@ function Login() {
     
        if (res.data.status === "ok") {
            console.log(res)
-         setError(res.data.message);         
+         setError(res.data.message);    
+         navigate('/dashboard')
        }if (res.data.error === 'password not match') {
          console.log(res)
         setError(res.data.error);
@@ -50,8 +51,8 @@ function Login() {
         <label >Password</label>
         <input type='password' id='passowrd'  onChange={e=> setValues({...values, password:e.target.value})} />
         <button class="login-btn">Login</button>
-        <div className='danger-text'><a href="/forget-password" >Forget Password</a></div>
-        <div className='signup-text' onClick={(()=>{navigate("/signup")}) }>Signup?</div>
+        <div className='danger-text'><a href="/forget-password" >Forget Password?</a></div>
+     
 
         <div className='danger-text'>{err}</div>
       </form>

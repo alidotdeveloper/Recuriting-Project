@@ -24,6 +24,22 @@ function App() {
       }, [])
 
   })
+  const handledelete = async (userid) => {
+
+      axios.delete('http://localhost:8080/api/showuser/' + userid)
+        .then((res) => {
+          console.log(res);
+          if (res) {
+            setUser(res.data)
+          } else {
+            seterr("Response data is not in array")
+          }
+        }).catch((err) => {
+          seterr("Got Error In catch: " + err.message)
+        }, [])
+
+    
+  }
   return (
     <div>
 
@@ -56,7 +72,8 @@ function App() {
         </nav>
       </div>
       <div className="height-100 bg-black">
-        <h4>User lists</h4>
+        <h4 className="h4-heading">User lists</h4>
+        <a href="/signup" className='global-btn'>Add New User</a>
         <table class="table-auto">
           <thead>
             <tr>
@@ -83,7 +100,7 @@ function App() {
                   <td>{user.role}</td>
                   <td>
                     <a href={`/dashboard/Edit-user/${user.id}/${user.username}/${user.email}/${user.password}/${user.role}`}  className='global-btn'>edit</a>
-                    <a href="/" className='global-btn'>delete</a>
+                    <a onClick={e => handledelete(user.id)} className='global-btn'>delete</a>
                   </td>
                 </tr>
               ))

@@ -136,13 +136,21 @@ a {
   color:black;
   background-color: white;
   padding: 10px 15px;
-  margin:5px;
+  margin:15px;
 }
 .global-btn:hover{
-  color:black;
- 
-  
+  color:black;  
 }
+
+.add-btn{
+  margin:20px;
+}
+
+.h4-heading{
+  margin: 20px;
+}
+
+
 
 @media screen and (min-width: 768px) {
   body {

@@ -10,7 +10,7 @@ const Signup = () => {
   const [values, setValues] = useState({
     email: '',
     password: '',
-    role:'Admin',
+    role:'',
     username:'',
   })
 
@@ -58,11 +58,14 @@ const Signup = () => {
         <input type='password' id='passowrd'   onChange={e=> setValues({...values, password:e.target.value})} />
         <label >Username</label>
           <input type='text' id="username" onChange={e => setValues({ ...values, username: e.target.value })} />
-          <select>
-            <option>Admin</option>
-          </select>
-          <button>Signup</button>
-          <div className='login-text' onClick={(()=>{navigate("/")}) }>Already have account?</div>
+          <label> Select Role </label>
+        <select value={values.role} onChange={e=> setValues({...values, role:e.target.value})}>
+        <option value="Admin" >Admin</option>
+        <option value="Manager">Manager</option>
+        <option value="Agent">Agent</option>
+        </select>
+          <button className='signup-btn'>Signup</button>
+          
           <div className='danger-text'>{ err}</div>
       </form>
       
