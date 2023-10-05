@@ -32,7 +32,7 @@ function App() {
       axios.delete('http://localhost:8080/api/showuser/' + userid)
         .then((res) => {
           console.log(res);
-          if (res.status = "200") {
+          if (res.status === 200) {
             setUser(res.data)
             
           } else {
@@ -104,7 +104,7 @@ function App() {
                   <td>{user.role}</td>
                   <td>
                     <a href={`/dashboard/Edit-user/${user.id}/${user.username}/${user.email}/${user.password}/${user.role}`}  className='global-btn'>edit</a>
-                    <a onClick={e => handledelete(user.id)} className='global-btn'>delete</a>
+                    <a onClick={e => handledelete(user.id)}  className='global-btn'>delete</a>
                   </td>
                 </tr>
               ))
