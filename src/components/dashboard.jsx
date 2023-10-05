@@ -24,13 +24,17 @@ function App() {
       }, [])
 
   })
+  
   const handledelete = async (userid) => {
+
+    alert("did you want to delete that record?");
 
       axios.delete('http://localhost:8080/api/showuser/' + userid)
         .then((res) => {
           console.log(res);
-          if (res) {
+          if (res.status = "200") {
             setUser(res.data)
+            
           } else {
             seterr("Response data is not in array")
           }
