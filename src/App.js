@@ -6,6 +6,7 @@ import Newpassword from "./components/New-password";
 import Test from "./components/test";
 import Dashboard from "./components/dashboard";
 import EditUser from "./components/Edit-user";
+import Nullpage from "./components/404-page";
 
 function App() {
   return (
@@ -26,6 +27,8 @@ function App() {
           path="/dashboard/edit-user/:userId/:username/:email/:password/:role"
           element={<EditUser />}
         />
+
+        <Route exact path="*" element={<Nullpage />} />
       </Routes>
     </>
   );
