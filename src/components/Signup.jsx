@@ -10,7 +10,7 @@ const Signup = () => {
   const [values, setValues] = useState({
     email: '',
     password: '',
-    role:'',
+    role:'Manager',
     username:'',
   })
 
@@ -60,7 +60,6 @@ const Signup = () => {
           <input type='text' id="username" onChange={e => setValues({ ...values, username: e.target.value })} />
           <label> Select Role </label>
         <select value={values.role} onChange={e=> setValues({...values, role:e.target.value})}>
-        <option value="Admin" >Admin</option>
         <option value="Manager">Manager</option>
         <option value="Agent">Agent</option>
         </select>
