@@ -19,12 +19,15 @@ function Login() {
   const handleLogin =  (e) => { 
     e.preventDefault();
 
-    axios.post('http://localhost:8080/api/login', values)
+    axios.post('http://localhost:8080/api/login', values, {
+  withCredentials: true,
+})
      .then(res => {
-    
+      
        if (res.data.status === "ok") {
            console.log(res)
-         setError(res.data.message);    
+         setError(res.data.message); 
+         axios.defaults.withCredentials = true;
          navigate('/dashboard')
        }if (res.data.error === 'password not match') {
          console.log(res)
@@ -50,7 +53,7 @@ function Login() {
         <input type='text' id="email"  onChange={e=> setValues({...values, email:e.target.value})}  />
         <label >Password</label>
         <input type='password' id='passowrd'  onChange={e=> setValues({...values, password:e.target.value})} />
-        <button class="login-btn">Login</button>
+        <button className="login-btn">Login</button>
         <div className='danger-text'><a href="/forget-password" >Forget Password?</a></div>
      
 

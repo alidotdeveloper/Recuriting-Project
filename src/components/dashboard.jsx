@@ -15,7 +15,7 @@ function App() {
   useEffect(() => {
     axios.get('http://localhost:8080/api/showuser')
       .then((res) => {
-        if (Array.isArray(res.data)) {
+        if (res.data) {
           setUser(res.data)
         } else {
           seterr("Response data is not in array")
@@ -55,23 +55,17 @@ function App() {
         <nav className="nav">
           <div>
             <a href="/" className="nav_logo">
-              <i className="bx bx-layer nav_logo-icon"></i>
+            <i class='bx bx-home'></i>
               <span className="nav_logo-name">BBBootstrap</span>
             </a>
             <div className="nav_list">
               <a href="/" className="nav_link active">
-                <i className="bx bxs-group nav_icon"></i>
+                <i className="bx bxs-group home_alt"></i>
                 <span className="nav_name">Dashboard</span>
               </a>
 
             </div>
-            <div className="nav_list">
-              <a href="/" className="nav_link">
-                <i className="bx bxs-user-plus nav_icon"></i>
-                <span className="nav_name">Add User</span>
-              </a>
-
-            </div>
+            
           </div>
           <a href="/" className="nav_link">
             <i className="bx bx-log-out nav_icon"></i>
@@ -82,7 +76,7 @@ function App() {
       <div className="height-100 bg-black">
         <h4 className="h4-heading">User lists</h4>
         <a href="/signup" className='global-btn'>Add New User</a>
-        <table class="table-auto">
+        <table className="table-auto">
           <thead>
             <tr>
               <th>id</th>

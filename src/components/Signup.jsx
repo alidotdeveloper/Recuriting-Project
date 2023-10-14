@@ -15,23 +15,28 @@ const Signup = () => {
   })
 
 
-  const handlesignup = (e) => {
+  const handlesignup =  (e) => { 
     e.preventDefault();
-    axios.post('http://localhost:8080/api/signup', values)
-      .then(res => {
-        setError(null);
-        console.log(res.data.message);
-        if (res.data.status === "ok") {
-          setError(res.data.message);
-          navigate('/', { replace: true })
-        } else {
-          setError(res.data.message)
-        }
 
-      }).catch(err => console.log(err));
-    
+    axios.post('http://localhost:8080/api/signup', values, {
+  withCredentials: true,
+})
+     .then(res => {
       
-  }
+       if (res.data.status === "ok") {
+           console.log(res)
+         setError(res.data.message); 
+         axios.defaults.withCredentials = true;
+         navigate('/dashboard')
+       }if (res.data.error === 'no') {
+         console.log(res)
+        setError(res.data.error);
+       }
+       
+     }).catch(err => console.log(err) )
+    
+    };
+  
  
   
 
