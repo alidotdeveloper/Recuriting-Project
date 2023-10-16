@@ -1,12 +1,17 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+
+import axios from "axios";
 
 const Test = () => {
-    const { name,token } = useParams();
+ 
+    
+   
+      
     return (
         <>
             
-            <h1>hello from {name}, your token number is {token} </h1>
+            <button >click me</button>
+           
 
         </>
     )

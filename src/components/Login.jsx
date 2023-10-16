@@ -23,11 +23,11 @@ function Login() {
   withCredentials: true,
 })
      .then(res => {
-      
+      axios.defaults.withCredentials = true;
        if (res.data.status === "ok") {
            console.log(res)
          setError(res.data.message); 
-         axios.defaults.withCredentials = true;
+         
          navigate('/dashboard')
        }if (res.data.error === 'password not match') {
          console.log(res)

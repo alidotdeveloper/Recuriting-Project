@@ -11,22 +11,6 @@ function App() {
   const [Users, setUser] = useState([])
   const [err, seterr] = useState(null)
 
-
-  useEffect(() => {
-    axios.get('http://localhost:8080/api/showuser')
-      .then((res) => {
-        if (res.data) {
-          setUser(res.data)
-        } else {
-          seterr("Response data is not in array")
-        }
-      })
-      .catch((err) => {
-        seterr("Got Error In catch: " + err.message)
-      }, [])
-
-  })
-  
   const handledelete = (userid) => {
 
     
@@ -48,6 +32,46 @@ function App() {
 
     
   }
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/api/showuser')
+      .then((res) => {
+        if (res.data) {
+          setUser(res.data)
+        } else {
+          seterr("Response data is not in array")
+        }
+      })
+      .catch((err) => {
+        seterr("Got Error In catch: " + err.message)
+      }, [])
+
+  })
+
+  const handlesignout = () => {
+    try {
+      console.log("we are in backend");
+      axios.get("http://localhost:8080/api/signout")
+        .then((res) => {
+          console.log(res)
+          if (res.status === 200) {
+            console.log("cookie delete succfully");
+           
+          } else {
+            console.log("Soory, cookie is deleted")
+            
+          }
+        
+        })
+      
+    }catch (err) {
+      
+     console.log("Got Error In catch: " + err.message)
+    }
+  }
+
+ 
+
   return (
     <div>
 
@@ -55,7 +79,7 @@ function App() {
         <nav className="nav">
           <div>
             <a href="/" className="nav_logo">
-            <i class='bx bx-home'></i>
+            <i className='bx bx-home'></i>
               <span className="nav_logo-name">BBBootstrap</span>
             </a>
             <div className="nav_list">
@@ -67,9 +91,9 @@ function App() {
             </div>
             
           </div>
-          <a href="/" className="nav_link">
-            <i className="bx bx-log-out nav_icon"></i>
-            <span className="nav_name">SignOut</span>
+          <a onClick={handlesignout} href="#" className="nav_link">
+            <i className="bx bx-log-out nav_icon" ></i>
+            <span className="nav_name" href="test">SignOut</span>
           </a>
         </nav>
       </div>
@@ -102,7 +126,7 @@ function App() {
                   <td>{user.role}</td>
                   <td>
                     <a href={`/dashboard/Edit-user/${user.id}/${user.username}/${user.email}/${user.password}/${user.role}`}  className='global-btn'>edit</a>
-                    <a onClick={e => handledelete(user.id)}  className='global-btn'>delete</a>
+                    <a  onClick={e => handledelete(user.id)} href='#' className='global-btn'>delete</a>
                   </td>
                 </tr>
               ))
@@ -122,8 +146,3 @@ function App() {
 
 export default App;
 
-
-// jwt token which we implement login
-// condition to check token is valid or not
-// create a custom api to verify we will put custom function of verify api in that 
-// if it's work it will give the message success
